@@ -1,0 +1,15 @@
+D:\Projects\CompayTask\Contellect\Contellect\Repository\bin\Debug\net8.0\Repository.deps.json
+D:\Projects\CompayTask\Contellect\Contellect\Repository\bin\Debug\net8.0\Repository.dll
+D:\Projects\CompayTask\Contellect\Contellect\Repository\bin\Debug\net8.0\Repository.pdb
+D:\Projects\CompayTask\Contellect\Contellect\Repository\bin\Debug\net8.0\CoreEntities.dll
+D:\Projects\CompayTask\Contellect\Contellect\Repository\bin\Debug\net8.0\CoreEntities.pdb
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.csproj.AssemblyReference.cache
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.AssemblyInfoInputs.cache
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.AssemblyInfo.cs
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.csproj.CoreCompileInputs.cache
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.csproj.Up2Date
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.dll
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\refint\Repository.dll
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\Repository.pdb
+D:\Projects\CompayTask\Contellect\Contellect\Repository\obj\Debug\net8.0\ref\Repository.dll
