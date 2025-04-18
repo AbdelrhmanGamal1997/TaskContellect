@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Repository;
 
-namespace BusinessLogicProject.ServicesBL.UserBLL
+namespace BusinessLogicProject.ViewModels.UserDtos
 {
-    public class UserBL
+    internal class ContactCreateDto
     {
-        public int Id { get; set; }
     }
 }
