@@ -6,6 +6,7 @@ namespace Contellect.Controllers
     {
         public IActionResult ContactGetAll()
         {
+            //
             return View();
         }
     }
