@@ -1,4 +1,5 @@
 ﻿
+@model List<ContactViewModel>
 @{
     ViewData["Title"] = "ContactGetAll";
 }
@@ -6,3 +7,31 @@
 <h1>ContactGetAll</h1>
 
 <a asp-controller="Contact" asp-action="AddContact" class="btn btn-info">AddContact</a>
+
+@if (Model != null && Model.Any())
+{
+    <h3>Results</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var con in Model)
+            {
+                <tr>
+                    <td>@con.Name</td>
+                    <td>@con.Phone</td>
+                    <td>@con.Address</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (Model == null)
+{
+    <p>No Contact found.</p>
+}

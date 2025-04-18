@@ -12,14 +12,17 @@ namespace Contellect.Controllers
         {
             _contactBL = contactBL;
         }
-        public IActionResult ContactGetAll()
+        public async Task<IActionResult> ContactGetAll()
         {
-            return View();
+            var data=await _contactBL.GetContacts();
+            return View(data);
         }
         public IActionResult AddContact()
         {
             return View();
         }
+
+
         // POST: /Employee/Add
         [HttpPost]
         [ValidateAntiForgeryToken]

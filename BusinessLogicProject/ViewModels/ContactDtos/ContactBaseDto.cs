@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicProject.ViewModels.ContactDtos
 {
-    public class CantactBaseDto
+    public class ContactBaseDto
     {
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
         public string Phone { get; set; }
         public string? Address { get; set; }
-        public string? Notes { get; set; }
+       
     }
 }

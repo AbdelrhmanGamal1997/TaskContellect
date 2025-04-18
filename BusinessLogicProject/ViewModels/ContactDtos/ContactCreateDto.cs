@@ -7,8 +7,8 @@ using BusinessLogicProject.ViewModels.ContactDtos;
 
 namespace BusinessLogicProject.ViewModels.UserDtos
 {
-    public class ContactCreateDto : CantactBaseDto
+    public class ContactCreateDto : ContactBaseDto
     {
-       
+        public string? Notes { get; set; }
     }
 }
