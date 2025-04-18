@@ -10,7 +10,7 @@ using Repository.RepositryPattern;
 
 namespace Repository.UnitOfWork
 {
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbcontext _context;
 

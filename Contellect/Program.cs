@@ -1,13 +1,28 @@
+using BusinessLogicProject.ServicesBL.ContactBLL;
+using BusinessLogicProject.ServicesBL.UserBLL;
 using CoreEntities;
 using Microsoft.EntityFrameworkCore;
+using Repository.InterFace;
+using Repository.RepositryPattern;
+using Repository.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+#region SqlConnections
 builder.Services.AddDbContext<AppDbcontext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+#endregion
+#region Register
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IContactBL, ContactBL>();
+
+#endregion
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +42,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Contact}/{action=ContactGetAll}/{id?}");
 
 app.Run();

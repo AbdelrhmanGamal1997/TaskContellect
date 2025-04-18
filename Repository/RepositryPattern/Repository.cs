@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using CoreEntities;
@@ -9,7 +10,7 @@ using Repository.InterFace;
 
 namespace Repository.RepositryPattern
 {
-    internal class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly AppDbcontext _context;
         protected readonly DbSet<T> _dbSet;
@@ -20,9 +21,19 @@ namespace Repository.RepositryPattern
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllByExpressionAsync(
+                  Expression<Func<T, bool>>? filter = null,
+                  int pageNumber = 1,
+                  int pageSize = 5)
         {
-            return await _dbSet.ToListAsync();
+            IQueryable<T> query = _dbSet;
+
+            if (filter != null)
+                query = query.Where(filter);
+
+             int skip = (pageNumber - 1) * pageSize;
+             query = query.Skip(skip).Take(pageSize);
+            return await query.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
