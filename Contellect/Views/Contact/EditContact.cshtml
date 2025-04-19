@@ -11,29 +11,29 @@
 <form asp-action="EditContact" asp-controller="Contact" id="contactForm" method="post">
     @Html.AntiForgeryToken()
 
-    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Id" id="ContactId" />
 
     <div class="form-group">
         <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" value="@Model.Name" />
+        <input asp-for="Name" class="form-control" id="Name" value="@Model.Name" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Phone"></label>
-        <input asp-for="Phone" class="form-control" value="@Model.Phone" />
+        <input asp-for="Phone" class="form-control" id="Phone" value="@Model.Phone" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Address"></label>
-        <input asp-for="Address" class="form-control" value="@Model.Address" />
+        <input asp-for="Address" class="form-control" id="Address" value="@Model.Address" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Notes"></label>
-        <input asp-for="Notes" class="form-control" value="@Model.Notes" />
+        <input asp-for="Notes" class="form-control" id="Notes" value="@Model.Notes" />
         <span asp-validation-for="Notes" class="text-danger"></span>
     </div>
 
@@ -43,4 +43,5 @@
 
 @section Scripts {
     <script src="~/customjs\contact\contact.js"></script>
+    <script src="~/customjs\contact\Signalr.js"></script>
 }

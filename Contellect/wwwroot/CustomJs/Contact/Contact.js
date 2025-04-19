@@ -71,16 +71,7 @@ $(document).ready(function () {
     }
 });
 
-//$(document).ready(function () {
-//    $("#delete-btn").click(function (e) {
-//        e.preventDefault(); // prevent immediate navigation
 
-//        var link = $(this).attr("href");
-//        if (confirm("Are you sure you want to delete this contact?")) {
-//            window.location.href = link;
-//        }
-//    });
-//});
 
 $(document).ready(function () {
     $("#delete-btn").click(function (e) {
@@ -103,3 +94,5 @@ $(document).ready(function () {
         });
     });
 });
+
+

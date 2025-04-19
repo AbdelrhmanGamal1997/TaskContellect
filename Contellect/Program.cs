@@ -1,5 +1,6 @@
 using BusinessLogicProject.ServicesBL.ContactBLL;
 using BusinessLogicProject.ServicesBL.UserBLL;
+using Contellect.SignlR;
 using CoreEntities;
 using Microsoft.EntityFrameworkCore;
 using Repository.InterFace;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<IContactBL, ContactBL>();
 
 #endregion
 
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -39,7 +41,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.MapHub<ContactHub>("/ContactHub");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Contact}/{action=ContactGetAll}/{id?}");

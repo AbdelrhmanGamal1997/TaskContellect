@@ -1,8 +1,11 @@
 ﻿using BusinessLogicProject.ServicesBL.ContactBLL;
 using BusinessLogicProject.ViewModels.ContactDtos;
 using BusinessLogicProject.ViewModels.UserDtos;
+using Contellect.SignlR;
+using CoreEntities.Enities;
 using Humanizer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Contellect.Controllers
@@ -10,9 +13,11 @@ namespace Contellect.Controllers
     public class ContactController : Controller
     {
         private readonly IContactBL _contactBL;
-        public ContactController(IContactBL contactBL)
+        private readonly IHubContext<ContactHub> _hubContext;
+        public ContactController(IContactBL contactBL, IHubContext<ContactHub> contactHub)
         {
             _contactBL = contactBL;
+            _hubContext = contactHub;
         }
         public async Task<IActionResult> ContactGetAll()
         {
@@ -68,6 +73,16 @@ namespace Contellect.Controllers
                 if (res == true)
                 {
                     TempData["Success"] = "Contact Update successfully!";
+                    // Notify all clients viewing this contact
+                    await _hubContext.Clients.Group(dto.Id.ToString())
+                        .SendAsync("ReceiveContactUpdate", new
+                        {
+                            id = dto.Id,
+                            name = dto.Name,
+                            address = dto.Address,
+                            phone = dto.Phone,
+                            notes = dto.Notes
+                        });
                     return RedirectToAction("ContactGetAll");
                 }
                 else
