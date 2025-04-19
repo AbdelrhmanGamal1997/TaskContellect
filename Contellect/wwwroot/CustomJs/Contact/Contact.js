@@ -29,3 +29,77 @@
         }
     });
 });
+
+$(document).ready(function () {
+    $('#SearchWord').on('input', function () {
+        let searchWord = $(this).val();
+        let pageNumber = 1; // default to first page
+        let pageSize = 10;  // set page size
+
+        $.ajax({
+            url: '/Contact/ContactGetAllDataBySearch',
+            type: 'GET',
+            data: { pageNumber: pageNumber, pageSize: pageSize, searchWord: searchWord },
+            success: function (data) {
+                updateTable(data);
+            },
+            error: function () {
+                alert('Error retrieving contacts.');
+            }
+        });
+    });
+
+    function updateTable(data) {
+        let tbody = $('table tbody');
+        tbody.empty();
+
+        if (data.length === 0) {
+            tbody.append('<tr><td colspan="5">No contacts found.</td></tr>');
+            return;
+        }
+
+        $.each(data, function (i, contact) {
+            let row = '<tr>' +
+                '<td>' + contact.name + '</td>' +
+                '<td>' + contact.phone + '</td>' +
+                '<td>' + contact.address + '</td>' +
+                '<td><a href="/Contact/EditContact/' + contact.id + '" class="btn btn-warning btn-sm">Edit</a></td>' +
+                '<td><a href="/Contact/DeleteContact/' + contact.id + '" class="btn btn-danger btn-sm" id="delete-btn">Delete</a></td>' +
+                '</tr>';
+            tbody.append(row);
+        });
+    }
+});
+
+//$(document).ready(function () {
+//    $("#delete-btn").click(function (e) {
+//        e.preventDefault(); // prevent immediate navigation
+
+//        var link = $(this).attr("href");
+//        if (confirm("Are you sure you want to delete this contact?")) {
+//            window.location.href = link;
+//        }
+//    });
+//});
+
+$(document).ready(function () {
+    $("#delete-btn").click(function (e) {
+        e.preventDefault(); // prevent default link navigation
+
+        var link = $(this).attr("href");
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link;
+            }
+        });
+    });
+});

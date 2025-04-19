@@ -33,7 +33,7 @@ namespace Repository.RepositryPattern
 
              int skip = (pageNumber - 1) * pageSize;
              query = query.Skip(skip).Take(pageSize);
-            return await query.ToListAsync();
+             return await query.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)

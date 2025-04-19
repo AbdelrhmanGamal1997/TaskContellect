@@ -7,6 +7,8 @@
 <h1>ContactGetAll</h1>
 
 <a asp-controller="Contact" asp-action="AddContact" class="btn btn-info">AddContact</a>
+<input type="text" id="SearchWord" placeholder="search by Name, Phone, or Address" />
+
 
 @if (Model != null && Model.Any())
 {
@@ -17,6 +19,8 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Address</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +30,8 @@
                     <td>@con.Name</td>
                     <td>@con.Phone</td>
                     <td>@con.Address</td>
+                    <td><a asp-action="EditContact" asp-route-id="@con.Id" class="btn btn-warning btn-sm">Edit</a></td>
+                    <td><a asp-action="DeleteContact" asp-route-id="@con.Id" id="delete-btn" class="btn btn-danger btn-sm">Delete</a></td>
                 </tr>
             }
         </tbody>
@@ -34,4 +40,8 @@
 else if (Model == null)
 {
     <p>No Contact found.</p>
+}
+
+@section Scripts {
+    <script src="~/customjs\contact\contact.js"></script>
 }
