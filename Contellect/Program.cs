@@ -44,6 +44,6 @@ app.UseAuthorization();
 app.MapHub<ContactHub>("/ContactHub");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Contact}/{action=ContactGetAll}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
