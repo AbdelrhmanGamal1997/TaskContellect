@@ -4,6 +4,7 @@ using BusinessLogicProject.ViewModels.UserDtos;
 using Contellect.SignlR;
 using CoreEntities.Enities;
 using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace Contellect.Controllers
             _contactBL = contactBL;
             _hubContext = contactHub;
         }
+        [Authorize]
         public async Task<IActionResult> ContactGetAll()
         {
             var data=await _contactBL.GetContacts();

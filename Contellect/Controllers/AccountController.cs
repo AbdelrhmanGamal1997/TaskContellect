@@ -1,4 +1,6 @@
-﻿using BusinessLogicProject.ViewModels.Account;
+﻿using System.Security.Claims;
+using BusinessLogicProject.ViewModels.Account;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Contellect.Controllers
@@ -17,11 +19,24 @@ namespace Contellect.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginDto dto)
+        public async Task<ActionResult> LoginAsync(LoginDto dto)
         {
             // Hardcoded credentials
-            if (loginDtos.Any(x=>x.UserName==dto.UserName && x.Password==dto.Password))
+            if (loginDtos.Any(x => x.UserName == dto.UserName && x.Password == dto.Password))
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, dto.UserName),
+                    new Claim("UserRole", "Admin")
+                };
+
+                var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync("MyCookieAuth", principal);
+
                 return RedirectToAction("ContactGetAll", "Contact");
+            }
             else
             {
                 ViewBag.Error = "Invalid credentials";
